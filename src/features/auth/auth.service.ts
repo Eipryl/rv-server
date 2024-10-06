@@ -28,6 +28,7 @@ export class AuthService {
 
   async signIn(data: AuthDto) {
     const group: GroupModel = await this.groupService.findBySerialGroup(
+      data.nameGroup,
       data.serialGroup,
     );
     if (!group)

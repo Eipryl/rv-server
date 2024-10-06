@@ -28,8 +28,9 @@ export class GroupService {
     });
   }
 
-  async findBySerialGroup(serialGroup: string) {
+  async findBySerialGroup(nameGroup: string, serialGroup: string) {
     return this.repository.findUniqueForSerialGroup({
+      nameGroup,
       serialGroup,
     });
   }
