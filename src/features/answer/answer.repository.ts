@@ -43,6 +43,7 @@ export class AnswerRepository {
                 answerTF: true,
                 question: {
                   select: {
+                    id: true,
                     questionText: true,
                   },
                 },
