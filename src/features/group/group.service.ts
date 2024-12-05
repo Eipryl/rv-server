@@ -29,6 +29,7 @@ export class GroupService {
   }
 
   async findBySerialGroup(nameGroup: string, serialGroup: string) {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     return this.repository.findUniqueForSerialGroup({
       nameGroup,
       serialGroup,

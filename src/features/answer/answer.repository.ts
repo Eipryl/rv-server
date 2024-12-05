@@ -24,6 +24,12 @@ export class AnswerRepository {
     });
   }
 
+  findByGroup(where: Prisma.GroupWhereUniqueInput) {
+    return this.prisma.group.findUnique({
+      where,
+    });
+  }
+
   async findMany(params: { where: Prisma.GroupWhereInput }) {
     const { where } = params;
     return this.prisma.group.findMany({

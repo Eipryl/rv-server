@@ -22,6 +22,7 @@ export class GroupRepository {
       select: {
         id: true,
         nameGroup: true,
+        serialGroup: true,
       },
     });
   }

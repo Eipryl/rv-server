@@ -27,5 +27,11 @@ export class userModel {
   section: string;
 
   @IsNumber()
-  groupId?: number;
+  groupId: number;
+
+  @IsString()
+  nameGroup: string;
+
+  @IsString()
+  serialGroup: string;
 }

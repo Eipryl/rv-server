@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { AnswerRepository } from './answer.repository';
 import { AnswerUserModel } from './answer.model';
 
@@ -9,7 +9,19 @@ export class AnswerService {
   async create(data: AnswerUserModel) {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     const { user, answers } = data;
-    const newUser = await this.repository.createUser(user);
+    const group = await this.repository.findByGroup({
+      id: user.groupId,
+      nameGroup: user.nameGroup,
+      serialGroup: user.serialGroup,
+    });
+    if (!group) throw new NotFoundException("Group doesn't exist");
+    const newUser = await this.repository.createUser({
+      name: user.name,
+      lastName: user.lastName,
+      grade: user.grade,
+      section: user.section,
+      groupId: user.groupId,
+    });
     const results = answers.map((x) => ({
       ...x,
       userId: newUser.id,
